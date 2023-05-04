@@ -10,9 +10,9 @@ public class BaseGame : IGame
 {
     Vector3 playerSpawnPoint = Vector3.zero;
     
-    //[Inject]
     public IPlayer player;
     public UIManager uiManager;
+    public LevelDistance levelDistanceScore;
 
     protected IGameManager gameManager;
 
@@ -35,7 +35,6 @@ public class BaseGame : IGame
 
     public virtual void EndGame()
     {
-        throw new System.NotImplementedException();
     }
 
     public virtual void StartGame()

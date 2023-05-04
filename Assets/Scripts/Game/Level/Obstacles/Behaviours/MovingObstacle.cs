@@ -11,7 +11,9 @@ public struct MovingObstacleData
 public class MovingObstacle : MonoBehaviour
 {
     private bool isDestroying = false;
+    private bool playerNearby = false;
     public MovingObstacleData Data;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +23,11 @@ public class MovingObstacle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!playerNearby)
+        {
+            CheckForPlayerProximity();
+            return;
+        }
         if (isDestroying)
             return;
         Move();
@@ -31,6 +38,15 @@ public class MovingObstacle : MonoBehaviour
     {
         transform.Translate(Vector3.forward * Time.deltaTime * Data.ForwardMovementSpeed);
         transform.LookAt(Data.Player.Transform);
+    }
+
+    // For now, until obstacle generator will be moved separately to mapSegment itself.
+    // So it's gonna be possible to mix and match diffrent segments, with cool
+    // mechanics
+    private void CheckForPlayerProximity()
+    {
+        if(transform.position.z - Data.Player.Transform.position.z < 22f)
+        { playerNearby = true; }
     }
 
     private void CheckForDeletion()

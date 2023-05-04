@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObstacleGenerator : BaseObstacleGenerator
 {
-    public static int MaxObstacles = 6;
+    public static int MaxObstacles = 4;
 
     public int Rows = 10;
     public int Columns = 4;
@@ -41,13 +41,15 @@ public class ObstacleGenerator : BaseObstacleGenerator
             //ObstacleDataSO randomSegment = obstacleDataSOs[randomObstacleIndex];
             //GameObject obstaclePrefab = randomSegment.ObstaclePrefab;
 
+            // Code for static obstacle generation, move to separate generator.
+
             //GameObject obstacle = GameObject.Instantiate(obstaclePrefab);
             //obstacle.transform.parent = mapSegment.transform;
             //obstacle.transform.localPosition = obstaclePos;
             //obstacle.transform.rotation = Quaternion.identity;
 
             MovingObstacle movingObstacle = MonoFactory.Create<MovingObstacle>("MovingObstacle");
-            movingObstacle.Data = new MovingObstacleData { ForwardMovementSpeed = 3f, Player = GameManager.Instance.GetGame().player };
+            movingObstacle.Data = new MovingObstacleData { ForwardMovementSpeed = UnityEngine.Random.Range(1.5f, 4f), Player = GameManager.Instance.GetGame().player };
             movingObstacle.transform.parent = mapSegment.transform;
             movingObstacle.transform.localPosition = obstaclePos;
             movingObstacle.transform.rotation = Quaternion.Euler(new Vector3(0,180,0));

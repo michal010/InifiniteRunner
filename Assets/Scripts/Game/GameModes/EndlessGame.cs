@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class EndlessGame : BaseGame
 {
-    LevelDistance levelDistanceScore;
     ISegmentGenerator segmentGenerator;
     IObstacleGenerator obstacleGenerator;
 
@@ -16,9 +15,9 @@ public class EndlessGame : BaseGame
         uiManager.transform.SetParent( GameObject.Find("UI_Container").transform, false) ;
     }
 
-    public new void EndGame()
+    public override void EndGame()
     {
-        throw new System.NotImplementedException();
+        gameManager.OnGameManagerTickEvent.RemoveAllListeners();
     }
 
     public override void StartGame()

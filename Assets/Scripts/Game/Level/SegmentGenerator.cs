@@ -16,7 +16,7 @@ public class SegmentGenerator : ISegmentGenerator
     public event Action<GameObject> OnSegmentGeneratedEvent;
     public float Zoffset = 22f;
     public int SegmentsUntilDeletion = 1;
-    public int StartingSegmentsCount = 20;
+    public int StartingSegmentsCount = 5;
 
     private Transform mapSegmentParent;
     private IPlayer player;

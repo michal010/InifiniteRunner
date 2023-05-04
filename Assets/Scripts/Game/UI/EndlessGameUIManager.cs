@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ public class EndlessGameUIManager : UIManager, IInjectable<LevelDistance>
     public Button RestartButton;
     public LevelDistance levelDistance;
     public GameObject GameOverPanel;
+    public TextMeshProUGUI ScoreText;
 
     public void Inject(LevelDistance dependency)
     {
@@ -30,6 +32,7 @@ public class EndlessGameUIManager : UIManager, IInjectable<LevelDistance>
 
     public override void ShowGameOverPanel()
     {
+        ScoreText.text = "You survived: " + levelDistance.Distance.ToString() + " seconds!";
         GameOverPanel.SetActive(true);
     }
 

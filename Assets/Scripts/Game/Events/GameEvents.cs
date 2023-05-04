@@ -29,6 +29,7 @@ public class GameEvents : IGameEvents
         gameManager.GetGame().player.Animator.Play("Stumble Backwards");
         gameManager.GetGame().player.Transform.gameObject.GetComponent<Player>().enabled = false;
         gameManager.GetGame().uiManager.ShowGameOverPanel();
+        gameManager.GetGame().EndGame();
         //Debug.Log(p.Transform.position);
     }
 }

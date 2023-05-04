@@ -43,9 +43,8 @@ public class GameManager : BaseGameManager , IGameManager
             Instance = this;
         else
             Destroy(this);
-        Debug.Log("Tworze Game Manager na nowo");
-        GameEvents = new GameEvents(this);
 
+        GameEvents = new GameEvents(this);
         OnGameManagerTickEvent = new UnityEvent();
         // Initialize all systems
         switch (gameType)

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PlayerMovement
 {
-    public float ForwardMovementSpeed = 3f;
-    public float SideMovementSpeed = 3f;
+    public float ForwardMovementSpeed = 3.5f;
+    public float SideMovementSpeed = 5f;
 
     private LevelBoundary levelBoundary;
     private Rigidbody rb;
