@@ -15,15 +15,15 @@ public class SegmentGenerator : ISegmentGenerator
 {
     public event Action<GameObject> OnSegmentGeneratedEvent;
     public float Zoffset = 22f;
-    public int SegmentsUntilDeletion = 2;
-    public int StartingSegmentsCount = 3;
+    public int SegmentsUntilDeletion = 1;
+    public int StartingSegmentsCount = 20;
 
     private Transform mapSegmentParent;
     private IPlayer player;
     private IObstacleGenerator obstacleGenerator;
     private Queue<GameObject> spawnedMapSegments;
     private List<MapSegmentDataSO> mapSegmentDataSOs;
-    private static int segmentIndex = 0;
+    private int segmentIndex = 0;
     private const string DATA_PATH = "MapSegmentData";
     
     public SegmentGenerator(IObstacleGenerator obstacleGenerator, IPlayer player, Transform mapSegmentParent)
@@ -48,7 +48,7 @@ public class SegmentGenerator : ISegmentGenerator
     }
     public void CheckForSegmentGeneration()
     {
-        Vector3 playerPos = player.transform.position;
+        Vector3 playerPos = player.Transform.position;
         if (playerPos.z > (1 + segmentIndex - StartingSegmentsCount + SegmentsUntilDeletion) * Zoffset)
         {
             DeleteSegment();

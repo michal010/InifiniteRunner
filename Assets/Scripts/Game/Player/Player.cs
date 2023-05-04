@@ -4,7 +4,8 @@ using UnityEngine;
 
 public interface IPlayer
 {
-    Transform transform { get; }
+    Transform Transform { get; }
+    Animator Animator { get; }
 }
 
 [FromFactory("Player", true)]
@@ -14,14 +15,14 @@ public class Player : MonoBehaviour, IPlayer
     private PlayerMovement playerMovement;
     private IPlayerCollider playerCollider;
 
-    public Transform position { get { return gameObject.transform; } }
+    public Transform Transform { get { return gameObject.transform; } }
+    public Animator Animator { get { return gameObject.GetComponentInChildren<Animator>(); } }
 
     // Start is called before the first frame update
     void Awake()
     {
         playerInput = new PlayerInput();
         playerMovement = new PlayerMovement(GetComponent<Rigidbody>(), this, new LevelBoundary(-3.5f,3.5f));
-        playerCollider = new BasePlayerCollider();
     }
 
     // Update is called once per frame

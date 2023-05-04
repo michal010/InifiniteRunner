@@ -14,7 +14,11 @@ public class FromFactory : Attribute
         ObjectName = objectName;
         ForceAdd = forceAdd;
     }
+}
 
+public interface IInjectable<T>
+{
+    void Inject(T dependency);
 }
 
 public class MonoFactory : MonoBehaviour
@@ -29,12 +33,32 @@ public class MonoFactory : MonoBehaviour
         LoadPrefabsToDictionary();
     }
 
-    public static T CreateGameObject<T>(string name)
+    public static T Create<T>(string name)
     {
         GameObject go = Instantiate(prefabs[name]);
         if (typeof(T).Equals(typeof(GameObject)))
             return (T)(object)go;
         return go.GetComponent<T>();
+    }
+
+
+    // Extension to inject
+    public static T CreateWithDepedency<T,U>(string name, U dependency)
+    {
+        GameObject go = Instantiate(prefabs[name]);
+        T component = go.GetComponent<T>();
+
+        if (component == null)
+        {
+            throw new InvalidOperationException($"GameObject '{name}' does not have component '{typeof(T).Name}'.");
+        }
+
+        if (dependency != null && component is IInjectable<U> injectable)
+        {
+            injectable.Inject(dependency);
+        }
+
+        return component;
     }
 
     private void LoadPrefabsToDictionary()

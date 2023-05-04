@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class EndlessGame : BaseGame
 {
     LevelDistance levelDistanceScore;
@@ -9,6 +11,9 @@ public class EndlessGame : BaseGame
         levelDistanceScore = new LevelDistance(player);
         obstacleGenerator = new ObstacleGenerator();
         segmentGenerator = new SegmentGenerator(obstacleGenerator, player, new UnityEngine.GameObject("Map").transform);
+        //endlessGameUIManager = MonoFactory.CreateGameObject<EndlessGameUIManager>("EndlessGameUIManager");
+        uiManager = MonoFactory.CreateWithDepedency<EndlessGameUIManager,LevelDistance>("EndlessGameUIManager", levelDistanceScore);
+        uiManager.transform.SetParent( GameObject.Find("UI_Container").transform, false) ;
     }
 
     public new void EndGame()
@@ -18,7 +23,7 @@ public class EndlessGame : BaseGame
 
     public override void StartGame()
     {
-        // Fire base function, spawn player, ...
+        // Does nothing currently.
         base.StartGame();
         
         // Start new endless game...

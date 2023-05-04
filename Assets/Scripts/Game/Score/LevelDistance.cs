@@ -24,6 +24,7 @@ public class LevelDistance : ILevelDistance
 
     public void UpdateDistance()
     {
-        Distance = (uint)player.transform.position.z;
+        //Distance = (uint)player.Transform.position.z;
+        Distance = (uint)Time.timeSinceLevelLoad;
     }
 }

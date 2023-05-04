@@ -12,10 +12,9 @@ GameObject:
   - component: {fileID: 142742902689958276}
   - component: {fileID: 2747170071663869262}
   - component: {fileID: 7534821083807803258}
-  - component: {fileID: -5892548024068307396}
   m_Layer: 0
   m_Name: Speed breaker 1
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,15 +97,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6.0003443, y: 0.1303952, z: 0.654418}
   m_Center: {x: 0, y: 0.06519762, z: 0}
---- !u!114 &-5892548024068307396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4404261845078400155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91bd992e3eef93d48bd28684cc69c8b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

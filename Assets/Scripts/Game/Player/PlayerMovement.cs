@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerMovement
 {
-    public float ForwardMovementSpeed = 2f;
+    public float ForwardMovementSpeed = 3f;
     public float SideMovementSpeed = 3f;
 
     private LevelBoundary levelBoundary;
@@ -18,18 +18,18 @@ public class PlayerMovement
 
     public void MovePlayer(Vector3 movementVector)
     {
-        player.transform.Translate(player.transform.forward * Time.deltaTime * ForwardMovementSpeed, Space.World);
+        player.Transform.Translate(player.Transform.forward * Time.deltaTime * ForwardMovementSpeed, Space.World);
 
         //  left movement
         if(movementVector.x < 0)
         {
-            if (player.transform.position.x > levelBoundary.LeftBoundary)
-                player.transform.Translate(player.transform.right * Time.deltaTime * SideMovementSpeed * movementVector.x);
+            if (player.Transform.position.x > levelBoundary.LeftBoundary)
+                player.Transform.Translate(player.Transform.right * Time.deltaTime * SideMovementSpeed * movementVector.x);
         }
         if(movementVector.x > 0)
         {
-            if (player.transform.position.x < levelBoundary.RightBoundary)
-                player.transform.Translate(player.transform.right * Time.deltaTime * SideMovementSpeed * movementVector.x);
+            if (player.Transform.position.x < levelBoundary.RightBoundary)
+                player.Transform.Translate(player.Transform.right * Time.deltaTime * SideMovementSpeed * movementVector.x);
         }
 
     }

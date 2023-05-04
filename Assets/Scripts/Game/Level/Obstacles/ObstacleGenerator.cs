@@ -30,20 +30,27 @@ public class ObstacleGenerator : BaseObstacleGenerator
     {
         for (int i = 0; i < MaxObstacles; i++)
         {
-            // Choose random obstacle to spawn
-            int randomObstacleIndex = UnityEngine.Random.Range(0, obstacleDataSOs.Count);
+            // Calculate position to spawn
             int randomX = UnityEngine.Random.Range(0, Columns);
             int randomZ = UnityEngine.Random.Range(0, Rows);
-
-
-            ObstacleDataSO randomSegment = obstacleDataSOs[randomObstacleIndex];
             Vector3 obstaclePos = new Vector3(randomX * xPadding, -1f, randomZ * zPadding);
-            GameObject obstaclePrefab = randomSegment.ObstaclePrefab;
 
-            GameObject obstacle = GameObject.Instantiate(obstaclePrefab);
-            obstacle.transform.parent = mapSegment.transform;
-            obstacle.transform.localPosition = obstaclePos;
-            obstacle.transform.rotation = Quaternion.identity;
+
+            // Choose random obstacle to spawn
+            int randomObstacleIndex = UnityEngine.Random.Range(0, obstacleDataSOs.Count);
+            //ObstacleDataSO randomSegment = obstacleDataSOs[randomObstacleIndex];
+            //GameObject obstaclePrefab = randomSegment.ObstaclePrefab;
+
+            //GameObject obstacle = GameObject.Instantiate(obstaclePrefab);
+            //obstacle.transform.parent = mapSegment.transform;
+            //obstacle.transform.localPosition = obstaclePos;
+            //obstacle.transform.rotation = Quaternion.identity;
+
+            MovingObstacle movingObstacle = MonoFactory.Create<MovingObstacle>("MovingObstacle");
+            movingObstacle.Data = new MovingObstacleData { ForwardMovementSpeed = 3f, Player = GameManager.Instance.GetGame().player };
+            movingObstacle.transform.parent = mapSegment.transform;
+            movingObstacle.transform.localPosition = obstaclePos;
+            movingObstacle.transform.rotation = Quaternion.Euler(new Vector3(0,180,0));
         }
     }
 }

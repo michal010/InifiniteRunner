@@ -12,10 +12,9 @@ GameObject:
   - component: {fileID: 6611361791963594411}
   - component: {fileID: 8945470252171692641}
   - component: {fileID: 5286507924618480670}
-  - component: {fileID: -7580633185145820923}
   m_Layer: 0
   m_Name: Concrete barrier End
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,15 +97,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.95163405, y: 0.52938575, z: 0.47107133}
   m_Center: {x: -0.09602098, y: 0.26469287, z: 0}
---- !u!114 &-7580633185145820923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7432150757856193460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91bd992e3eef93d48bd28684cc69c8b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

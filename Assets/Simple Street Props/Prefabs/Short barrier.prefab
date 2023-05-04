@@ -12,10 +12,9 @@ GameObject:
   - component: {fileID: 8457025807237258385}
   - component: {fileID: 5960957639283239003}
   - component: {fileID: 2112124567367320048}
-  - component: {fileID: 8718834638707439555}
   m_Layer: 0
   m_Name: Short barrier
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,15 +97,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0003648, y: 0.97038645, z: 0.39416367}
   m_Center: {x: 0, y: 0.48970297, z: 0}
---- !u!114 &8718834638707439555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5312399366144608654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91bd992e3eef93d48bd28684cc69c8b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
