@@ -2,10 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public interface IMovementInput
 {
     Vector2 MovementInputVector { get; }
+    public UnityEvent OnSlideButton { get; }
+    public UnityEvent OnJumpButton { get; }
 }
 
 public class PlayerInput : IMovementInput
@@ -20,6 +23,8 @@ public class PlayerInput : IMovementInput
     [Tooltip("Dead zone of mouse motion - % value of mouse movement that will be ignored from the center of the screen.")]
     public float InnerDeadZonePercentage = 0.1f;
 
+    public UnityEvent OnSlideButton { get; private set; }
+    public UnityEvent OnJumpButton { get; private set; }
 
     private float halfScreenWidth = Screen.width / 2f;
     private float innerDeadZone;
@@ -34,6 +39,21 @@ public class PlayerInput : IMovementInput
         outerDeadZone = Screen.width * OuterDeadZonePercentage;
         // Range of motion in pixels
         motionZone = halfScreenWidth - innerDeadZone / 2f - outerDeadZone / 2f;
+        // Initialize events
+        OnSlideButton = new UnityEvent();
+        OnJumpButton = new UnityEvent();
+    }
+
+    public void GetButtonInput()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            OnSlideButton.Invoke();
+        }
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            OnJumpButton.Invoke();
+        }    
     }
 
     public void GetMovementInput()

@@ -1,34 +1,49 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public interface IPlayer
 {
     Transform Transform { get; }
     Animator Animator { get; }
+    Rigidbody Rigidbody { get; }
 }
+
+
 
 [FromFactory("Player", true)]
 public class Player : MonoBehaviour, IPlayer
 {
-    private PlayerInput playerInput;
-    private PlayerMovement playerMovement;
-    private IPlayerCollider playerCollider;
+    public Transform Transform { get; private set; }
+    public Animator Animator { get; private set; }
+    public Rigidbody Rigidbody { get; private set; }
 
-    public Transform Transform { get { return gameObject.transform; } }
-    public Animator Animator { get { return gameObject.GetComponentInChildren<Animator>(); } }
+
+    public IPlayerController PlayerController { get; private set; }
+
+    private PlayerInput playerInput;
+
 
     // Start is called before the first frame update
     void Awake()
     {
+        // Fetch player's components
+        Rigidbody = gameObject.GetComponent<Rigidbody>();
+        Transform = gameObject.GetComponent<Transform>();
+        Animator = gameObject.GetComponentInChildren<Animator>();
+        //
         playerInput = new PlayerInput();
-        playerMovement = new PlayerMovement(GetComponent<Rigidbody>(), this, new LevelBoundary(-3.5f,3.5f));
+        PlayerController = new RunningPlayerController(playerInput, this);
     }
 
     // Update is called once per frame
     void Update()
     {
         playerInput.GetMovementInput();
-        playerMovement.MovePlayer(playerInput.MovementInputVector);
+        playerInput.GetButtonInput();
+        PlayerController.UpdatePlayer();
+        if (Input.GetKeyDown(KeyCode.R))
+            PlayerController = new SkateboardingPlayerController(playerInput,this);
+        if (Input.GetKeyDown(KeyCode.T))
+            PlayerController = new RunningPlayerController(playerInput, this);
     }
+
 }

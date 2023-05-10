@@ -7,7 +7,7 @@ public enum GameType { Endless, Story }
 
 public interface IGameManager
 {
-    BaseGame GetGame();
+    BaseGame Game { get; }
     IGameEvents GameEvents { get; }
     UnityEvent OnGameManagerTickEvent { get; }
 }
@@ -23,18 +23,12 @@ public class GameManager : BaseGameManager , IGameManager
 
     public UnityEvent OnGameManagerTickEvent { get; private set; }
 
-    private BaseGame Game;
+    public BaseGame Game { get; private set; }
 
     // Singleton solution for now.
     public static GameManager Instance { get; private set; }
 
     public IGameEvents GameEvents { get; private set; }
-    //public IGame Game { get; private set; }
-
-    public BaseGame GetGame()
-    {
-        return Game;
-    }
 
     // Start is called before the first frame update
     void Awake()

@@ -1,17 +1,20 @@
 using UnityEngine;
 
-public class PlayerMovement
+public interface IPlayerMovement
+{
+    public void MovePlayer(Vector3 movementVector);
+}
+
+public class PlayerMovement : IPlayerMovement
 {
     public float ForwardMovementSpeed = 3.5f;
     public float SideMovementSpeed = 5f;
 
     private LevelBoundary levelBoundary;
-    private Rigidbody rb;
     private IPlayer player;
 
-    public PlayerMovement(Rigidbody rb, IPlayer player, LevelBoundary levelBoundary)
+    public PlayerMovement(IPlayer player, LevelBoundary levelBoundary)
     {
-        this.rb = rb;
         this.player = player;
         this.levelBoundary = levelBoundary;
     }

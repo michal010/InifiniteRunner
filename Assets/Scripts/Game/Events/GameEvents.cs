@@ -26,10 +26,10 @@ public class GameEvents : IGameEvents
         //Debug.Log("Reset game or check if player has hp etc.");
         //(GameManager)gameManager.Game.
         //gameManager.Game.
-        gameManager.GetGame().player.Animator.Play("Stumble Backwards");
-        gameManager.GetGame().player.Transform.gameObject.GetComponent<Player>().enabled = false;
-        gameManager.GetGame().uiManager.ShowGameOverPanel();
-        gameManager.GetGame().EndGame();
+        gameManager.Game.player.Animator.Play("Stumble Backwards");
+        gameManager.Game.player.Transform.gameObject.GetComponent<Player>().enabled = false;
+        gameManager.Game.uiManager.ShowGameOverPanel();
+        gameManager.Game.EndGame();
         //Debug.Log(p.Transform.position);
     }
 }

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public interface IGame
 {
+    LevelGenerator LevelGenerator { get; }
     void StartGame();
     void EndGame();
 }
@@ -13,6 +14,7 @@ public class BaseGame : IGame
     public IPlayer player;
     public UIManager uiManager;
     public LevelDistance levelDistanceScore;
+    public LevelGenerator LevelGenerator { get; protected set; }
 
     protected IGameManager gameManager;
 
