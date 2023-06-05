@@ -1,9 +1,6 @@
 using UnityEngine;
 
-
-
-//[RequireComponent(typeof(Collider))]
-public class PlayerCollider : MonoBehaviour
+public class PlayerCollision : MonoBehaviour
 {
     // Inject logics
     public IPlayerCollider playerCollider;

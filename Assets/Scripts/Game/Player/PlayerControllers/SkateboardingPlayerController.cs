@@ -1,27 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SkateboardingPlayerController : BasePlayerController
 {
     public SkateboardingPlayerController(PlayerInput playerInput, IPlayer player) : base(playerInput, player)
     {
-        PlayerMovement = new PlayerMovement(player, new LevelBoundary(-3.5f, 3.5f));
+        PlayerMovement = new SkateboardingPlayerMovement(
+            new SkateboardingPlayerMovementData(player,
+                new LevelBoundary(-3.5f,3.5f),
+                5f,
+                5f
+                )
+            );
+        player.Collision.playerCollider = new SkateboardingPlayerCollider(
+            new SkateboardingPlayerColliderData((SkateboardingPlayerMovement)PlayerMovement)
+            );
         player.Animator.SetTrigger("Skateboard");
     }
 
     public override void HookPlayerInput()
     {
         playerInput.OnJumpButton.AddListener(Jump);
-        playerInput.OnSlideButton.AddListener(Slide);
+        playerInput.OnCrouchButton.AddListener(Crouch);
     }
 
-    void Slide()
-    {
-        Debug.Log("Sliding");
-    }
     void Jump()
     {
-        Debug.Log("Jumping");
+        PlayerMovement.OnJumpButton();
     }
+    void Crouch()
+    {
+        PlayerMovement.OnCrouchButton();
+    }
+
 }

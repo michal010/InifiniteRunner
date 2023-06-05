@@ -1,9 +1,8 @@
-public interface IPlayerAnimator
-{
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-}
-
-public class PlayerAnimator : IPlayerAnimator
+public class DataManager : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

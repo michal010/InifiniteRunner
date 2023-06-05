@@ -27,4 +27,13 @@ public class EndlessGame : BaseGame
 
     }
 
+    public override void SpawnPlayer()
+    {
+        // TODO: How to inject IPlayer to monobehaviour directly
+        // Spawn player
+        GameObject playerGo = MonoFactory.Create<GameObject>("Player");
+        playerGo.transform.position = DefaultGameSettings.PLAYER_SPAWN_POINT;
+        player = playerGo.GetComponent<IPlayer>();
+        // Attach collision event, move this to EndlessGame for proper hook.
+    }
 }

@@ -8,6 +8,7 @@ public enum GameType { Endless, Story }
 public interface IGameManager
 {
     BaseGame Game { get; }
+    //BaseGameSettings {}
     IGameEvents GameEvents { get; }
     UnityEvent OnGameManagerTickEvent { get; }
 }

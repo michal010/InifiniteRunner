@@ -8,6 +8,11 @@ public interface IPlayerController
     public IPlayerCollider PlayerCollider { get; }
 }
 
+public enum PlayerControllerType
+{
+    RunningPlayer,
+    SkateboardingPlayer
+}
 
 public class BasePlayerController : IPlayerController
 {
@@ -22,7 +27,7 @@ public class BasePlayerController : IPlayerController
         this.playerInput = playerInput;
         this.player = player;
         playerInput.OnJumpButton.RemoveAllListeners();
-        playerInput.OnSlideButton.RemoveAllListeners();
+        playerInput.OnCrouchButton.RemoveAllListeners();
         HookPlayerInput();
     }
 
